@@ -2,17 +2,16 @@ package com.caio.job_board.exception.global;
 
 import com.caio.job_board.dto.ErroResponseDTO;
 import com.caio.job_board.exception.ExistsEmailException;
+import com.caio.job_board.exception.ExitsCnpjException;
 import com.caio.job_board.exception.RoleNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.HttpClientErrorException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
 
 
 
@@ -35,5 +34,12 @@ public class GlobalExceptionHandler {
 
         ErroResponseDTO erroResponseDTO = new ErroResponseDTO(HttpStatus.UNAUTHORIZED.value(), e.getMessage());
         return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(erroResponseDTO);
+    }
+
+    @ExceptionHandler(ExitsCnpjException.class)
+    public ResponseEntity<ErroResponseDTO> existsCnpjHandler(ExitsCnpjException e){
+
+        ErroResponseDTO erroResponse = new ErroResponseDTO(HttpStatus.BAD_REQUEST.value(),e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erroResponse);
     }
 }

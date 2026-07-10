@@ -1,7 +1,7 @@
 package com.caio.job_board.exception;
 
-public class ExitsByCnpjException extends RuntimeException {
-  public ExitsByCnpjException(String message) {
-    super(message);
-  }
+public class ExitsCnpjException extends RuntimeException {
+    public ExitsCnpjException(String message) {
+        super(message);
+    }
 }
