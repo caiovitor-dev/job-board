@@ -25,6 +25,10 @@ spring:
     init:
       mode: always
 
+  jwt:
+    secret-key: Mbma4t+JSaMvOmuQqSvME+5Vq0ofLu1F+y4dI+zPriY=
+    expiration: 3600000
+
 server:
  port: 8080
 

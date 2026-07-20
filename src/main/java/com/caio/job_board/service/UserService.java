@@ -42,6 +42,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
     @Transactional
     public User getUserByEmail(String email){
         User user= userRepository.findByEmail(email);

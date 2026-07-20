@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "enterprises")
@@ -24,7 +25,10 @@ public class Enterprise {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = false)
+    @OneToMany(mappedBy = "enterprise")
+    private List<Job> jobs;
+
+    @Column(nullable = false, unique = true)
     private String cnpj;
 
     @Column(nullable = false,unique = true)

@@ -1,9 +1,11 @@
 package com.caio.job_board.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public record EnterpriseCreateDTO(
-        String name,
-        String cnpj,
-        String email,
-        String description
+       @NotBlank(message = "Campo não pode está vazio" ) String name,
+       @NotBlank  String cnpj,
+       @NotBlank String email,
+       @NotBlank String description
 ) {
 }

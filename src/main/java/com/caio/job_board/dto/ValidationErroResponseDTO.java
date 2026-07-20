@@ -1,12 +1,13 @@
 package com.caio.job_board.dto;
 
-
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
-public record ErroResponseDTO(
+public record ValidationErroResponseDTO(
         int status,
         String message,
-        LocalDateTime timestamp
+        LocalDateTime timestamp,
+        HashMap<String,String> errors
 ) {
 }

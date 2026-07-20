@@ -6,6 +6,7 @@ import com.caio.job_board.mapper.UserMapper;
 import com.caio.job_board.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -14,12 +15,13 @@ import java.net.URI;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("user")
+@PreAuthorize("hasRole('USER')")
 public class UserController {
 
   private final UserMapper userMapper;
   private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<Void> registerUser(@RequestBody UserCreateDTO dto) {
         User user = userMapper.toEntity(dto);
         userService.saveUser(user);
@@ -32,4 +34,6 @@ public class UserController {
 
         return ResponseEntity.created(location).build();
     }
+
+
 }

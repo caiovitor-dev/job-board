@@ -25,8 +25,6 @@ public class User {
     @Column(name = "user_id")
     private UUID id;
 
-
-
     @Column(nullable = false,unique = true)
     private String cpf;
 
@@ -40,7 +38,6 @@ public class User {
     private String name;
 
     @Column(nullable = false)
-
     @Enumerated(EnumType.STRING)
     private StatusAccount statusAccount;
 

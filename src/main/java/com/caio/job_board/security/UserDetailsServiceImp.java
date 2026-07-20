@@ -5,6 +5,7 @@ import com.caio.job_board.entity.User;
 import com.caio.job_board.repository.UserRepository;
 import com.caio.job_board.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.NullMarked;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,11 +21,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserDetailsServiceImp implements UserDetailsService {
 
-    private final UserService userService;
+    private final UserRepository userRepository;
 
+    @NullMarked
     @Override
     public UserDetails loadUserByUsername (String username){
-        User user = userService.getUserByEmail(username);
+        User user = userRepository.findByEmail(username);
 
         if(user == null)
             throw new UsernameNotFoundException("Usuário não encontrado");
@@ -37,4 +39,5 @@ public class UserDetailsServiceImp implements UserDetailsService {
         return roles.stream()
                 .map(role-> new SimpleGrantedAuthority(role.getName().toString())).collect(Collectors.toList());
     }
+
 }
