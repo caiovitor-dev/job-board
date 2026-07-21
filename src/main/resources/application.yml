@@ -26,8 +26,8 @@ spring:
       mode: always
 
   jwt:
-    secret-key: Mbma4t+JSaMvOmuQqSvME+5Vq0ofLu1F+y4dI+zPriY=
-    expiration: 3600000
+    secret-key: ${JWT_SECRET}
+    expiration: ${JWT_EXPIRATION}
 
 server:
  port: 8080
