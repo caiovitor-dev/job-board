@@ -24,7 +24,6 @@ public class AuthenticationService {
 
         UserDetails user = (UserDetails) authenticate.getPrincipal();
 
-
         assert user != null;
 
         String access = jwtService.generateAccessToken(user);

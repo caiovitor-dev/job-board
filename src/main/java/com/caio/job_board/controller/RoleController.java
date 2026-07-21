@@ -4,6 +4,7 @@ import com.caio.job_board.dto.RoleCreateDTO;
 import com.caio.job_board.entity.Role;
 import com.caio.job_board.mapper.RoleMapper;
 import com.caio.job_board.service.RoleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,7 +26,7 @@ public class RoleController {
     private final RoleMapper roleMapper;
 
     @PostMapping
-    public ResponseEntity<Void> createRole(@RequestBody RoleCreateDTO dto){
+    public ResponseEntity<Void> createRole(@RequestBody @Valid RoleCreateDTO dto){
         Role role = roleService.saveRole(roleMapper.toEntity(dto));
 
         URI location = ServletUriComponentsBuilder

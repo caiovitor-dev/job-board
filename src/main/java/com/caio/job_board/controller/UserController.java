@@ -4,6 +4,7 @@ import com.caio.job_board.dto.UserCreateDTO;
 import com.caio.job_board.entity.User;
 import com.caio.job_board.mapper.UserMapper;
 import com.caio.job_board.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +23,7 @@ public class UserController {
   private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<Void> registerUser(@RequestBody UserCreateDTO dto) {
+    public ResponseEntity<Void> registerUser(@RequestBody @Valid UserCreateDTO dto) {
         User user = userMapper.toEntity(dto);
         userService.saveUser(user);
 

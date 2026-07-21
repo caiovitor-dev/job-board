@@ -3,6 +3,7 @@ package com.caio.job_board.controller;
 import com.caio.job_board.dto.AuthenticationDTO;
 import com.caio.job_board.dto.TokenResponse;
 import com.caio.job_board.service.AuthenticationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 
@@ -20,7 +21,7 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ResponseEntity<TokenResponse> login(@RequestBody AuthenticationDTO dto){
+    public ResponseEntity<TokenResponse> login(@RequestBody @Valid AuthenticationDTO dto){
 
         TokenResponse authenticate = authenticationService.authenticate(dto);
         return ResponseEntity.ok(authenticate);

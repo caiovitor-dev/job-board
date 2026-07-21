@@ -58,12 +58,12 @@ public class EnterpriserController {
     }
 
 
-    @GetMapping("/cu")
+    @GetMapping("/")
     public ResponseEntity<List<EnterpriseResponseDTO>> listEnterprise(
-            @RequestParam(value = "numberPage",defaultValue = "1") int numberPage,
-            @RequestParam(value = "numberSize",defaultValue = "0") int numberSize){
+            @RequestParam(value = "numberPage",defaultValue = "1") int pageNumber,
+            @RequestParam(value = "numberSize",defaultValue = "0") int pageSize){
 
-        Page<Enterprise> page = enterpriseService.searchPaginated(numberPage, numberPage);
+        Page<Enterprise> page = enterpriseService.searchPaginated(pageNumber, pageSize);
 
         List<EnterpriseResponseDTO> enterprises = page.stream().map(enterpriseMapper::toDTO).toList();
 
@@ -71,7 +71,7 @@ public class EnterpriserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity <?> replaceEnterprise(@PathVariable UUID id, @RequestBody EnterpriseUpdateDTO dto){
+    public ResponseEntity <?> replaceEnterprise(@PathVariable UUID id, @RequestBody @Valid EnterpriseUpdateDTO dto){
 
         return enterpriseService.updateEnterprise(dto,id)
                 .map(enterprise ->ResponseEntity.noContent().build())
